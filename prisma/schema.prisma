@@ -15,10 +15,10 @@ model User {
   email String  @unique
   name  String?
   password String
-  posts Post[]
+  offert Offert[]
 }
 
-model Post {
+model Offert {
   id        Int     @id @default(autoincrement())
   title     String
   content   String?

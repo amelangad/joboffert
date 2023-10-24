@@ -30,7 +30,7 @@ export default function Nav() {
                     className="object-contain" />
                 <p className="m-auto text-xl">Jobber</p>
             </Link>
-            <Link href ="/UserOffert" className ="border-2 border-white bg-slate-200 text-black px-5 py-2 m-2 rounded w-50 hover:bg-whitex">Job offert</Link>
+            <Link href ={"/offerts"} className ="border-2 border-white bg-slate-200 text-black px-5 py-2 m-2 rounded w-50 hover:bg-whitex">Job offert</Link>
             </div>
             <div className="sm:flex hidden gap-3">
                 {session && session.user?
@@ -40,7 +40,7 @@ export default function Nav() {
                             className="border-2 border-white bg-slate-200 text-black px-5 py-2 m-2 rounded w-50 hover:bg-white">
                             Create offert</Link>
                         <button type="button"
-                            onClick={signOut}
+                            onClick={() => signOut() }
                             className="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
                         >SignOut</button>
                         <Link href="/profile">
@@ -52,12 +52,15 @@ export default function Nav() {
                         </Link>
                     </div>
                     :
-                    <>
+                 <>
+                 <Link href ="/register"
+                        className ="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
+                         >SignUp</Link>
                     <button type="button"
-                            onClick={signIn}
+                            onClick={(e) => {e.preventDefault(), signIn() }}
                             className="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
                         >SignIn</button>
-                    </>
+                         </>
 
                 }
             </div>
@@ -100,13 +103,15 @@ export default function Nav() {
                     </div>
                 )
                     :
-                    <>
+                <>
+                <Link href ="/register"
+                        className ="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
+                         >SignUp</Link>
                     <button type="button"
-                    onClick={signIn}
+                    onClick={() => signIn() }
                     className="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
                 >SignIn</button>
-                 
-            </>
+                </>
                 }
 
             </div>
@@ -114,5 +119,3 @@ export default function Nav() {
         </nav>
     )
 }
-
-

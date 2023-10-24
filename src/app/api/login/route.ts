@@ -16,8 +16,8 @@ const user = await prisma.user.findFirst({
 })
 
 if (user && ( await bcrypt.compare(body.password, user.password) )){
-  const {password, ...userWithoutPass } = user
+  const {password, ...rest } = user
 
-  return new Response (JSON.stringify(userWithoutPass))
+  return new Response (JSON.stringify(rest))
 } else return new Response (JSON.stringify(null));
 }
