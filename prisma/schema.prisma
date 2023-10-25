@@ -25,4 +25,5 @@ model Offert {
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
+  salary Float  @default(0)
 }

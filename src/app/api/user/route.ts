@@ -1,7 +1,6 @@
 import prisma from '../../lib/prisma';
 import * as bcrypt from 'bcrypt';
 import {NextResponse} from 'next/server'
-import {readirect} from 'next/navigation'
 
 interface RequestBody {
     name: string;
@@ -21,8 +20,7 @@ export async function POST (req: Request){
     });
 
     const { password, ...result } = user;
-    return new Response(JSON.stringify(result),
-    redirect('/thanks'));
+    return new Response(JSON.stringify(result));
 
 
 }
