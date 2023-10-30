@@ -1,9 +1,10 @@
-import NextAuth from 'next-auth/next'
+import NextAuth, {NextAuthOptions} from 'next-auth'
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
-const handler = NextAuth({
+
+const authOptions: NextAuthOptions = {
     providers: [
       GithubProvider ({
         clientId: process.env.GITHUB_ID as string,
@@ -39,8 +40,21 @@ const handler = NextAuth({
           }
       }}),
     ],
+    callbacks:{
+      async jwt({ token, user}){
+          return { ...token, ...user};
+        },
 
-})
+      async session ({session, token}){
+        session.user = token as any;
+        return session;
+      }
+    },
+  };
+
+
+
+const handler = NextAuth(authOptions);
 
 
 export { handler as GET, handler as POST }

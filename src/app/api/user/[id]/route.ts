@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma'
 
 export async function GET (req: Request, { params }: {params: {id:number}}) {
-const offert = await prisma.offert.findMany({
+const offerts = await prisma.offert.findMany({
     where:  {authorId: +params.id},
     include: {
         author: {
@@ -14,6 +14,6 @@ const offert = await prisma.offert.findMany({
     }
 });
 
-return new Response (JSON.stringify(offert))
+return new Response (JSON.stringify(offerts))
 
 }

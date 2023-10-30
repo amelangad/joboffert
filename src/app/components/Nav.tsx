@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 
 export default function Nav() {
-    const { data: session, status } = useSession();
+    const { data: session,} = useSession();
     const [providers, setProviders] = useState(null);
     const [open, setOpen] = useState(false);
 
@@ -40,7 +40,7 @@ export default function Nav() {
                             className="border-2 border-white bg-slate-200 text-black px-5 py-2 m-2 rounded w-50 hover:bg-white">
                             Create offert</Link>
                         <button type="button"
-                            onClick={() => signOut() }
+                            onClick={() => signOut()}
                             className="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
                         >SignOut</button>
                         <Link href="/profile">
@@ -57,7 +57,7 @@ export default function Nav() {
                         className ="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
                          >SignUp</Link>
                     <button type="button"
-                            onClick={(e) => {e.preventDefault(), signIn() }}
+                            onClick={(e) => {e.preventDefault(), signIn()}}
                             className="border-2 border-white px-5 py-2 m-2 rounded w-50 mr-5 hover:bg-slate-600"
                         >SignIn</button>
                          </>

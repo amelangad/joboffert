@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from "jsonwebtoken"
 
 
 interface SignOption {
-    expiresIn?: string | number
+    expiresIn?: string | number,
 }
 
 const DEFAULT_SIGN_OPTION:SignOption={
@@ -18,11 +18,11 @@ export function signJwtAccessToken(payload:JwtPayload, options:SignOption){
 export function verifyJwt(token: string){
     try{
         const secret_key = process.env.SECRET_KEY;
-        const decoded = jwt.verify(token, secret_key);
+        const decoded = jwt.verify(token, secret_key!);
         return decoded as JwtPayload;
     }
     catch (err){
-consosle.log(err);
+console.log(err);
 return null;
     }
 }

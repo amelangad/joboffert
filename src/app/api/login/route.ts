@@ -1,3 +1,4 @@
+import { signJwtAccessToken } from '@/app/lib/jwt';
 import prisma from '../../lib/prisma'
 import * as bcrypt from 'bcrypt'
 
@@ -17,7 +18,12 @@ const user = await prisma.user.findFirst({
 
 if (user && ( await bcrypt.compare(body.password, user.password) )){
   const {password, ...rest } = user
+  const accesToken = signJwtAccessToken(rest);
+  const result = {
+    ...rest,
+    accesToken,
+  }
 
-  return new Response (JSON.stringify(rest))
+  return new Response (JSON.stringify(result))
 } else return new Response (JSON.stringify(null));
 }
